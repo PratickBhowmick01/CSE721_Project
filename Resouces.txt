@@ -1,0 +1,27 @@
+# Tutorial links
+
+- How to Capture Text Box Entries on Submit Button Press
+https://www.youtube.com/watch?v=E2r1-5T-PZE
+
+- How To Center a Tkinter Window On The Screen - 2 Methods!
+https://www.youtube.com/watch?v=Z8jdlBNIaDo
+
+- Radio Buttons with TKinter - Python Tkinter GUI Tutorial #12
+https://www.youtube.com/watch?v=uqJZWLlnSqs
+
+- Secret Label Copying Hack - Python Tkinter GUI Tutorial #132
+https://www.youtube.com/watch?v=JB7ZwypM9hk&t=359s
+
+- The grid layout method in tkinter
+https://www.youtube.com/watch?v=IJ-iVnN09-8
+
+- Tkinter Beginner Course - Python GUI Development
+https://www.youtube.com/watch?v=ibf5cx221hk
+
+- Tkinter Course - Create Graphic User Interfaces in Python Tutorial
+https://www.youtube.com/watch?v=YXPyB4XeYLA
+
+- Using tkinter with classes
+https://www.youtube.com/watch?v=eaxPK9VIkFM 
+
+- 
