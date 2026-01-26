@@ -52,11 +52,13 @@ def playfair_encrypt(plaintext, matrix):
           r1,c1 = j,k
         if matrix[j][k] == b:
           r2,c2 = j,k
-    # print(a,b)
-    # print(r1,c1,r2,c2)
+   
+
     if r1 == r2:
       cipher += matrix[r1][(c1+1)%5] + matrix[r2][(c2+1)%5]
+      cipher += matrix[r1][(c1+1)%5] + matrix[r2][(c2+1)%5]
     elif c1 == c2:
+      cipher += matrix[(r1+1)%5][c1] + matrix[(r2+1)%5][c2]
       cipher += matrix[(r1+1)%5][c1] + matrix[(r2+1)%5][c2]
     else:
       cipher += matrix[r1][c2] + matrix[r2][c1]
@@ -96,4 +98,7 @@ def playfair_decrypt(cipher, matrix):
 # cipher = playfair_encrypt(plaintext,matrix)
 # plain = playfair_decrypt(cipher, matrix)
 # print("Cipher:", cipher)
+
 # print("After decryption:", plaintext)
+
+# print("After decryption:", plain)
