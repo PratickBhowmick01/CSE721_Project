@@ -10,12 +10,14 @@ def task(plain, cipher):
 
 		plain_lst.append(val1)
 		cipher_lst.append(val2)
+	# print(plain_lst)
+	# print(cipher_lst)
 
 	# Check if inverse matrix is possible.
 	det = 0
 	flag = False
 	i,a,b,c,d = 0, 0, 0, 0, 0
-	while i < len(plain_lst)-4:
+	while i < len(plain_lst)-3:
 		a,b,c,d = plain_lst[i], plain_lst[i+1], plain_lst[i+2], plain_lst[i+3]
 		det = a*d - b*c
 		while det < 0: det += 26
@@ -26,6 +28,7 @@ def task(plain, cipher):
 			break
 		i += 4
 
+	print(det)
 	if flag == False:
 		print("Data insufficient to break the cipher")
 		return

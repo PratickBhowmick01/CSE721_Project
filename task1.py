@@ -14,12 +14,7 @@ class CryptoTool(tk.Tk):
 		super().__init__()			# Initialize the parent class (tk.Tk)
 		self.title("Encryption/Decryption Tool")
 		self.iconbitmap('linux.ico')
-		w, h = 650, 500
-		screen_width = self.winfo_screenwidth()
-		screen_height = self.winfo_screenheight()
-		x = (screen_width / 2) - (w / 2)
-		y = (screen_height / 2) - (h / 2)
-		self.geometry(f"{w}x{h}+{int(x)}+{int(y)}")
+		self.state('zoomed')
 
 		self.label = tk.Label(self, text="Greetings, fellow Cypherpunk!", font=("Montserrat", 16))
 		self.label.pack(padx=20, pady=20)
@@ -35,7 +30,6 @@ class CryptoTool(tk.Tk):
 		self.phase_two = phaseTwo(self) 
 
 
-
 class phaseOne(ttk.Frame):
 	def __init__(self, parent):
 		super().__init__(parent)
@@ -45,13 +39,12 @@ class phaseOne(ttk.Frame):
 		
 
 	def OnClick_Submit(self):
-		# global cipher, op
 		self.app.cipher = self.app.selectedCipher.get()
 		self.app.action = self.app.selectedAction.get()
 		# messagebox.showinfo("Selection", f"You selected option {op}")
 
-		self.app.label.destroy()
-		self.pack_forget() # Switch to phase two
+		# self.app.label.destroy()
+		# self.pack_forget() # Switch to phase two
 		self.app.phase_two.displays()
 
  
@@ -76,25 +69,24 @@ class phaseOne(ttk.Frame):
 		btn4 = tk.Radiobutton(buttonFrame, text="Hill Cipher", font=("Montserrat", 16), variable = self.app.selectedCipher, value = 4, padx=60, pady=10) 
 		btn4.grid(row=1, column=1, sticky=tk.W) 
 
-		buttonFrame.pack()
+		buttonFrame.grid(row=0, columnspan=2)
 
 		# Encrypt/Decrypt buttons
 		buttonFrame2 = tk.Frame(self)
-		buttonFrame2.columnconfigure(0, weight=1)
-		# self.selectedAction = tk.IntVar()
+		buttonFrame2.grid_columnconfigure(1, weight=1)
 		self.app.selectedAction.set(5)
 
-		btn5 = tk.Radiobutton(buttonFrame2, text="Encryption", font=("Montserrat", 16), variable=self.app.selectedAction, value=5)
-		btn5.grid(row=0, column=0, sticky=tk.NS)
+		btn5 = tk.Radiobutton(buttonFrame2, text="Encryption", font=("Montserrat", 16), variable=self.app.selectedAction, value=5, padx=60, pady=10)
+		btn5.grid(row=0, column=0, sticky=tk.W)
 
-		btn6 = tk.Radiobutton(buttonFrame2, text="Decryption", font=("Montserrat", 16), variable=self.app.selectedAction, value=6)
-		btn6.grid(row=1, column=0, sticky=tk.NSEW)
+		btn6 = tk.Radiobutton(buttonFrame2, text="Decryption", font=("Montserrat", 16), variable=self.app.selectedAction, value=6, padx=60, pady=10)
+		btn6.grid(row=0, column=1, sticky=tk.W)
 
-		buttonFrame2.pack()
+		buttonFrame2.grid(row=1, columnspan=2)
 
 		# Submit
 		submitButton = tk.Button(self, text='Submit', font=("Montserrat", 16), command=self.OnClick_Submit)
-		submitButton.pack(anchor="center", pady=20)
+		submitButton.grid(row=2, columnspan=2)
 
 
 class phaseTwo(ttk.Frame):
@@ -151,7 +143,9 @@ class phaseTwo(ttk.Frame):
 
 		output_display = Text(self, wrap=tk.WORD, width=40, height=4, font=("Montserrat", 14))
 		output_display.insert(tk.END, result)
-		output_display.grid(row=6, padx=10, pady=10, columnspan=2)
+		output_display.grid(row=9, padx=10, pady=10, columnspan=2)
+
+		
 
  
 	def displays(self):
@@ -162,29 +156,29 @@ class phaseTwo(ttk.Frame):
 		else: act = "ciphertext"
 			
 		text_label = Label(self, text="Enter your " + act + ":", font=("Montserrat", 16))
-		text_label.grid(row=0, padx=10, pady=10)
+		text_label.grid(row=4, padx=10, pady=10)
 
 		self.text_input = Entry(self, width=80)
-		self.text_input.grid(row=1, padx=10, pady=10)
+		self.text_input.grid(row=5, padx=10, pady=10)
 
 		# Key input
 		key_label = Label(self, text="Enter your key:", font=("Montserrat", 16))
-		key_label.grid(row=2, padx=10, pady=10)
+		key_label.grid(row=6, padx=10, pady=10)
 
 		self.key = Entry(self, width=40)
-		self.key.grid(row=3, padx=10, pady=10)
+		self.key.grid(row=7, padx=10, pady=10)
 
 		self.pack()
 		self.create_widgets()
+  
 
 	def create_widgets(self):
 		submit_btn = Button(self, text='Show Output', font=("Montserrat", 16), command=self.run)
-		submit_btn.grid(row=4, padx=10, pady=10)
+		submit_btn.grid(row=8, column=0, padx=40, pady=10, sticky=tk.W)
 
 		hint_btn = Button(self, text="Hint", font=("Montserrat", 16), command=self.hint)
-		hint_btn.grid(row=5, padx=10, pady=10)
+		hint_btn.grid(row=8, column=0, padx=160, pady=10, sticky=tk.E)
 
-		
 
 App = CryptoTool()
 App.mainloop()

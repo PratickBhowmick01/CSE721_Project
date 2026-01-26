@@ -79,7 +79,7 @@ def hill_decrypt(cipher, matrix):
 
 # Test run
 # key = input("Please enter the matrix: ")
-# matrix = hillMatrix(key)
+# matrix = hillMatrix(key) # 5 8 17 3
 
 # ciphertext = hill_encrypt("kokil", matrix)
 # plaintext = hill_decrypt(ciphertext, matrix)
