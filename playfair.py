@@ -56,9 +56,7 @@ def playfair_encrypt(plaintext, matrix):
 
     if r1 == r2:
       cipher += matrix[r1][(c1+1)%5] + matrix[r2][(c2+1)%5]
-      cipher += matrix[r1][(c1+1)%5] + matrix[r2][(c2+1)%5]
     elif c1 == c2:
-      cipher += matrix[(r1+1)%5][c1] + matrix[(r2+1)%5][c2]
       cipher += matrix[(r1+1)%5][c1] + matrix[(r2+1)%5][c2]
     else:
       cipher += matrix[r1][c2] + matrix[r2][c1]
@@ -87,8 +85,22 @@ def playfair_decrypt(cipher, matrix):
       plaintext += matrix[r1-1][c1] + matrix[r2-1][c2]
     else:
       plaintext += matrix[r1][c2] + matrix[r2][c1]
+      
+  # Remove 'z' used as filler
+  cleaned_plaintext = ""
+  i = 0
+  while i < len(plaintext):
+    if (i > 0) and (i < len(plaintext) - 1) and (plaintext[i] == 'z') and (plaintext[i-1] == plaintext[i+1]):
+      i += 1
+      
+    elif i == len(plaintext) - 1 and plaintext[i] == 'z' and len(plaintext) % 2 != 0:
+      i += 1
+    
+    else:
+      cleaned_plaintext += plaintext[i]
+      i += 1
 
-  return plaintext
+  return cleaned_plaintext
 
 # Test run
 # key = input("Please enter your key: ")
@@ -97,8 +109,6 @@ def playfair_decrypt(cipher, matrix):
 # matrix = playMatrix(key)
 # cipher = playfair_encrypt(plaintext,matrix)
 # plain = playfair_decrypt(cipher, matrix)
-# print("Cipher:", cipher)
 
-# print("After decryption:", plaintext)
-
+# print("After encryption:", cipher)
 # print("After decryption:", plain)
